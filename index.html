@@ -4,35 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-    /* #btn{
-        display: flex;
-        align-items: flex-end;    
-    } */
-    .imgContainer{
+    body {
+        background-image: url("https://img00.deviantart.net/be35/i/2015/235/5/2/spidey_vs_captain_america_by_darkuchihasharingan-d96t1d7.jpg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .container_fluid {
         display: flex;
         justify-content: center;
-        align-content: center;
-        width: 100wv;
-        height: 80vh;
-        background-color: aquamarine;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background: transparent;
+    }
+    a {
+        display: flex;
+        width: 40vw;
+        height: 20vh;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        font-size: 40px;
+        color: white;
+        background: linear-gradient(135deg, rgb(168, 209, 226), rgb(132, 202, 229));
+    }
+    a:hover {
+        color: red;
+        background: linear-gradient(135deg, rgb(247, 162, 162), rgb(245, 118, 118));
+        transition: 2s;
     }
     </style>
-    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.5.0/js/md5.min.js"></script>
+    <script>
+
+        // thor: https://www.flickr.com/photos/45928872@N08/4530349436
+        // torch: https://live.staticflickr.com/8002/7174245251_87dd511092_b.jpg
+        // default: https://www.deviantart.com/darkuchihasharingan/art/Spidey-Vs-Captain-America-555628075
+$(function () {   
+    $('a').on('click', (e) => {
+        var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';                                
+        $.getJSON ( weatherURL )
+        .done(function( response ) {
+            var weatherConditions = response[Math.floor(Math.random()*48)].day;
+            console.log(weatherConditions);
+            if(weatherConditions === 'Moderate rain'||'Moderate or heavy sleet showers'||'Light drizzle'||'Patchy freezing drizzle possible'||'Fog'||'Heavy rain at times') {
+                console.log('storm');
+                var publickey = 'a054b45fb805b78dc23c2437a3780e43';
+                var privatekey = '85a50e79c35f0189b869623a9a24c574a9918356';
+                var ts = new Date().getTime();
+                var stringToHash = ts + privatekey + publickey;
+                var hash = md5(stringToHash);
+                var baseUrl2 = 'https://gateway.marvel.com:443/v1/public/characters?name=Storm';
+                var stormURL = baseUrl2 + '&ts=' + ts + '&apikey=' + publickey + '&hash=' + hash;
+                $.getJSON( stormURL )
+                .done(function( response2 ) {
+                            var stormURL = response2.data.results[0].urls[1].url;
+                            var stormName = response2.data.results[0].name;
+                            console.log(stormName);
+                });
+            } else if(weatherConditions === 'Blizzard'||'Patchy snow possible'||'Light showers of ice pellets'||'Patchy sleet possible'||'Patchy freezing drizzle possible'||'Light freezing rain'||'Ice pellets'||'Moderate or heavy showers of ice pellets'||'Light sleet showers'||'Heavy snow'||'Moderate or heavy sleet') {
+                console.log('iceman');
+                var publickey = 'a054b45fb805b78dc23c2437a3780e43';
+                var privatekey = '85a50e79c35f0189b869623a9a24c574a9918356';
+                var ts = new Date().getTime();
+                var stringToHash = ts + privatekey + publickey;
+                var hash = md5(stringToHash);
+
+            } else if(weatherConditions === 'Thundery outbreaks possible'||'Patchy light rain with thunder'||'Patchy light snow with thunder'||'Torrential rain shower') {
+                console.log('thor');
+                var publickey = 'a054b45fb805b78dc23c2437a3780e43';
+                var privatekey = '85a50e79c35f0189b869623a9a24c574a9918356';
+                var ts = new Date().getTime();
+                var stringToHash = ts + privatekey + publickey;
+                var hash = md5(stringToHash);
+                var baseUrl = 'https://gateway.marvel.com:443/v1/public/characters?name=Thor';
+                var thorURL = baseUrl + '&ts=' + ts + '&apikey=' + publickey + '&hash=' + hash;
+                $.getJSON( thorURL )
+                .done(function( response3 ) {
+                    var thorURL = response3.data.results[0].urls[1].url;
+                    var thorName = response3.data.results[0].name;
+                    console.log(thorName);
+                });
+            } else {
+                console.log('ghost-rider');
+            }
+        });
+    });
+});
+    </script>
+    <title>Random Hero + Weather Generator</title>
 </head>
 <body>
-
-
-    <div class="d-flex align-items-end">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Get Weather</button>
-
-    </div>
-    
-   <div class="imgContainer"><div class ="img"></div></div>
-
-
-
-</ul>
+<div class="background">
+<div class="container_fluid">
+<a type="button">Get Weather</a>
+</div>
+</div>
 </body>
 </html>

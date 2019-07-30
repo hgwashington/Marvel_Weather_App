@@ -8,7 +8,7 @@
     <style>
  
 body {
-    background-image: url("https://d1nz104zbf64va.cloudfront.net/dt/a/o/5-things-you-didn-t-know-about-thor.jpg");
+    background-image: url("../groupprojectsidework/images/torch.jpg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -35,10 +35,9 @@ a {
     font-size: 8px;
     padding: 3px;
     color: white;
-    background-image: url("https://media.giphy.com/media/26uf5HjasTtxtNCqQ/giphy.gif");
-    background-size: 130%;
+    background-image: url("https://media.giphy.com/media/KV1s4kSJHaY3m/giphy.gif");
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-position: center;
     transition: .2s;
     transition-timing-function: ease-in;
 }
@@ -72,23 +71,23 @@ a.home:hover {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script>
 $(function () {   
- var thorURL = localStorage.getItem('thorURL');
- var thorName = localStorage.getItem('thorName');
- var weatherConditions = localStorage.getItem('weatherConditions');
- $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
- $('.title').html(thorName);
- $('.url').html(`More info here!! ${thorURL}`);
- var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';                                
- $('.hero').on('click', (e) => {  
-    localStorage.removeItem('weatherConditions');                               
+var torchURL = localStorage.getItem('torchURL');
+var torchName = localStorage.getItem('torchName');
+var weatherConditions = localStorage.getItem('weatherConditions');
+$('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
+$('.title').html(torchName);
+$('.url').html(`More info here!! ${torchURL}`);
+var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';
+$('.hero').on('click', (e) => {
+    localStorage.removeItem('weatherConditions');                                
     $.getJSON ( weatherURL )
     .done(function( response ) {
         console.log(response);
         var weatherConditions = response[Math.floor(Math.random()*48)].day;
         localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
-        if (weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+        if (weatherConditions === 'Moderate rain'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
             window.location.href="storm.html";
-        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
+        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
             window.location.href="iceman.html";
         } else if (weatherConditions === 'Thundery outbreaks possible'||weatherConditions === 'Patchy light rain with thunder'||weatherConditions === 'Patchy light snow with thunder'||weatherConditions === 'Torrential rain shower'||weatherConditions === 'Moderate or heavy rain with thunder') {
             window.location.href="thor.html";

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <style>
+ 
+body {
+    background-image: url("https://d1nz104zbf64va.cloudfront.net/dt/a/o/5-things-you-didn-t-know-about-thor.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: pink;
+}
+.container_fluid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: all 5s ease-out;
+    width: 100%;
+    height: 100vh;
+    background: transparent;
+}
+a {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 6%;
+    height: 12%;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 9px;
+    padding: 5px;
+    color: white;
+    background-image: url("https://i.gifer.com/Cbd.gif");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    transition: .5s;
+    transition-timing-function: ease-in;
+    font-weight: bolder;
+}
+a:hover {
+    background-image: url("https://media.giphy.com/media/KV1s4kSJHaY3m/giphy.gif");
+    cursor: pointer;
+    color: rgb(241, 71, 71);
+    font-size: 10px;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script>
+$(function () {   
+ var thorURL = localStorage.getItem('thorURL');
+ var thorName = localStorage.getItem('thorName');
+ var weatherConditions = localStorage.getItem('weatherConditions');
+ $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
+ $('.title').html(thorName);
+ $('.url').html(`More info here!! ${thorURL}`);
+ var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';                                
+ $('a').on('click', (e) => {  
+    localStorage.removeItem('weatherConditions');                               
+    $.getJSON ( weatherURL )
+    .done(function( response ) {
+        console.log(response);
+        var weatherConditions = response[Math.floor(Math.random()*48)].day;
+        localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
+        if (weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+            window.location.href="storm.html";
+        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
+            window.location.href="iceman.html";
+        } else if (weatherConditions === 'Thundery outbreaks possible'||weatherConditions === 'Patchy light rain with thunder'||weatherConditions === 'Patchy light snow with thunder'||weatherConditions === 'Torrential rain shower'||weatherConditions === 'Moderate or heavy rain with thunder') {
+            window.location.href="thor.html";
+        } else {
+            window.location.href="index.html";
+        }
+    });
+});
+});
+ </script>
+    <title>Random</title>
+</head>
+<body>
+<div class="background">
+<div class="container_fluid">
+<div class="weather"></div>
+<div class="title"></div>
+<div class="url"></div>
+<a type="button">Check the Weather</a>
+</div>
+</div>
+</body>
+</html>

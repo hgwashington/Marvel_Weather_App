@@ -37,9 +37,9 @@
         background-image: url("https://media.giphy.com/media/fA6opG8tgo2KQ/giphy.gif");
         cursor: pointer;
         color: red;
-        -webkit-text-stroke-color: black;
+        -webkit-text-stroke-color: white;
         -webkit-text-stroke-width: 1px;
-        font-size: 42px;
+        font-size: 48px;
         padding: 0px;
         width: 50%;
         height: 35%;
@@ -52,20 +52,78 @@
         display: flex;
         position: absolute;
         right: 1%;
-        top: 1%;
-        width: 10%;
-        height: 30vh;
+        top: 9%;
+        width: fit-content;
+        height: fit-content;
         background: transparent;
         flex-direction: column;
-        align-items: flex-start;
-        border: 1px solid red;
+        align-items: flex-end;
     }
     .hero-toggle {
-        display: inline-block;
-        width: 30%;
-        height: 60%;
+        display: flex;
+        width: 4vw;
+        height: 8vh;
+        border-radius: 50px;
+        transition: .2s;
+        transition-timing-function: ease-in;
+    }
+    .hero-toggle:hover {
+        width: 8vw;
+        height: 16vh;
+        transition: .2s;
+        transition-timing-function: ease-in;
+    }
+    #storm {
+    background-size: 110%;
+    background-image: url("../groupprojectsidework/images/storm.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    }
+    #thor {
+        background-size: 125%;
+        background-image: url("../groupprojectsidework/images/thorprofile.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    #iceman {
         background-size: 100%;
-        background-image: url("https://media.giphy.com/media/fA6opG8tgo2KQ/giphy.gif");
+        background-image: url("../groupprojectsidework/images/iceman.jpg");
+        background-repeat: no-repeat;
+    }
+    #torch {
+        background-size: 120%;
+        background-image: url("../groupprojectsidework/images/torchprofile.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .fadeEffect:hover {
+    color: white;
+    animation: fadeMain 2s infinite;
+    }
+    @keyframes fadeMain {
+    0%,100% { color: white; }
+    50% { color: red; }
+    }
+    a.home {
+    display: flex;
+    width: 4vw;
+    height: 8vh;
+    background-image: url("../groupprojectsidework/images/home.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: white;
+    border-radius: 50px;
+    }
+    a.fadeInAndOut:hover {
+    background-color: white;
+    animation: fade 5s infinite;
+    }
+    @keyframes fade {
+    0% { background-color: white; }
+    25% { background-color: red; }
+    50% { background-color: green; }
+    75% { background-color: lightpink; }
+    100% { background-color: white; }
     }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -132,7 +190,7 @@
                             console.log(response);
                             var weatherConditions = response[Math.floor(Math.random()*48)].day;
                             localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
-                            if (weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+                            if (weatherConditions === 'Patchy rain possible'||weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
                                 window.location.href="storm.html";
                             } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
                                 window.location.href="iceman.html";
@@ -159,8 +217,9 @@
     <a href="storm.html" class="hero-toggle" id="storm"></a>
     <a href="thor.html" class="hero-toggle" id="thor"></a>
     <a href="torch.html" class="hero-toggle" id="torch"></a>
+    <a class="home fadeInAndOut" href="index.html"></a>
     </header>
-<a class="index" type="button">Check the Weather</a>
+<a class="index fadeEffect" type="button">Check the Weather</a>
 </div>
 </div>
 </body>

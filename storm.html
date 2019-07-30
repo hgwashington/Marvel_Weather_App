@@ -8,11 +8,10 @@
     <style>
  
 body {
-    background-image: url(../groupprojectsidework/images/storm.jpeg);
+    background-image: url(../groupprojectsidework/images/stormbg.jpg);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
-    background-color: pink;
 }
 .container_fluid {
     display: flex;
@@ -23,49 +22,104 @@ body {
     height: 100vh;
     background: transparent;
 }
-a {
+a.getweather {
     display: flex;
-    position: absolute;
-    right: 1%;
-    top: 1%;
-    width: 3.4%;
-    height: 6.8%;
+    width: 8vw;
+    height: 13vh;
     justify-content: center;
     border-radius: 20px;
-    font-size: 8px;
+    font-size: 12px;
     padding: 3px;
+    margin: 3px;
     color: white;
     background-image: url("https://i.gifer.com/Cbd.gif");
     background-size: 100%;
+    background-position-y: .1vh;
     background-repeat: no-repeat;
     transition: .2s;
     transition-timing-function: ease-in;
 }
-a:hover {
+a.getweather:hover {
     background-image: url("https://media.giphy.com/media/fA6opG8tgo2KQ/giphy.gif");
     cursor: pointer;
-    color: rgb(241, 71, 71);
-    font-size: 10px;
-    -webkit-text-stroke-color: black;
+    color: rgb(202, 224, 4);
+    font-size: 18px;
+    -webkit-text-stroke-color: white;
     -webkit-text-stroke-width: 0.5px;
     font-weight: bolder;
     transition: .2s;
     transition-timing-function: ease-in;
-    width: 10%;
+    width: 18vw;
 }
 a.home {
     display: flex;
-    position: absolute;
-    right: 1%;
-    top: 9%;
-    width: 2.5%;
-    height: 5%;
+    width: 4vw;
+    height: 8vh;
     background-image: url("../groupprojectsidework/images/home.png");
     background-size: 100%;
     background-repeat: no-repeat;
-}
-a.home:hover {
     background-color: white;
+    border-radius: 50px;
+}
+a.fadeInAndOut:hover {
+    background-color: white;
+    animation: fade 5s infinite;
+    }
+    @keyframes fade {
+    0% { background-color: white; }
+    25% { background-color: red; }
+    50% { background-color: green; }
+    75% { background-color: lightpink; }
+    100% { background-color: white; }
+    }
+header {
+    display: flex;
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    width: fit-content;
+    height: fit-content;
+    background: transparent;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+.hero-toggle {
+    display: flex;
+    width: 4vw;
+    height: 8vh;
+    border-radius: 50px;
+    transition: .2s;
+    transition-timing-function: ease-in;
+}
+.hero-toggle:hover {
+    width: 8vw;
+    height: 16vh;
+    transition: .2s;
+    transition-timing-function: ease-in;
+}
+#storm {
+    background-size: 110%;
+    background-image: url("../groupprojectsidework/images/storm.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#thor {
+    background-size: 125%;
+    background-image: url("../groupprojectsidework/images/thorprofile.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#iceman {
+    background-size: 100%;
+    background-image: url("../groupprojectsidework/images/iceman.jpg");
+    background-repeat: no-repeat;
+}
+#torch {
+    background-size: 120%;
+    background-image: url("../groupprojectsidework/images/torchprofile.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -74,18 +128,22 @@ $(function () {
  var stormURL = localStorage.getItem('stormURL');
  var stormName = localStorage.getItem('stormName');
  var weatherConditions = localStorage.getItem('weatherConditions');
- $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
+ if(weatherConditions === null) {
+    $('.weather').html(`The Weather Is Not Available Until You Click!`);
+} else {
+    $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
+}
  $('.title').html(stormName);
  $('.url').html(`More info here!! ${stormURL}`);
  var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';                         
- $('.hero').on('click', (e) => {   
+ $('.getweather').on('click', (e) => {   
     localStorage.removeItem('weatherConditions');                                 
     $.getJSON ( weatherURL )
     .done(function( response ) {
         console.log(response);
         var weatherConditions = response[Math.floor(Math.random()*48)].day;
         localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
-        if (weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+        if (weatherConditions === 'Patchy rain possible'||weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
             window.location.href="storm.html";
         } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
             window.location.href="iceman.html";
@@ -106,12 +164,14 @@ $(function () {
 <div class="weather"></div>
 <div class="title"></div>
 <div class="url"></div>
-<a class="hero" type="button">Weather</a>
-<a class="home" href="index.html"></a>
+<header>
+<a class="getweather" type="button">WEATHER</a>
 <a href="iceman.html" class="hero-toggle" id="iceman"></a>
 <a href="storm.html" class="hero-toggle" id="storm"></a>
 <a href="thor.html" class="hero-toggle" id="thor"></a>
 <a href="torch.html" class="hero-toggle" id="torch"></a>
+<a class="home fadeInAndOut" href="index.html"></a>
+</header>
 </div>
 </div>
 </body>

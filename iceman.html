@@ -189,8 +189,16 @@ button.accordion:hover, button.accordion.is-open {
     flex-direction: row;
 }
 .weather-html {
+    display: inline-block;
+    padding: 5px;
+    margin: 3px;
     background-color: white;
     border-radius: 20px;
+    text-align: center;
+    font-size: 15px;
+    height: fit-content;
+    width: 4vw;
+    height: 8vh;
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -200,9 +208,9 @@ var iceURL = localStorage.getItem('iceURL');
 var iceName = localStorage.getItem('iceName');
 var weatherConditions = localStorage.getItem('weatherConditions');
 if(weatherConditions === null) {
-    $('.weather-html').html(`The Weather Is Not Available Until You Click!`);
+    $('.weather-html').html(`The Weather Is Not Available<br>Until You Click!`);
 } else {
-    $('.weather-html').html(`The Weather Is Currently: ${weatherConditions}`);
+    $('.weather-html').html(`The Weather Is Currently:<br><br>${weatherConditions}`);
 }
 $('.title').html(iceName);
 $('.url').html(`More info here!! ${iceURL}`);

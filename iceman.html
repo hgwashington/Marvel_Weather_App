@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     <style>
  
-body {
+.background {
     background-image: url("https://i0.wp.com/wallur.com/wp-content/uploads/2016/12/x-men-background-17.jpg?fit=1920%2C1080");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-size: 100% 100%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 .container_fluid {
     display: flex;
@@ -60,6 +65,14 @@ a.home {
     background-repeat: no-repeat;
     background-color: white;
     border-radius: 50px;
+    transition: .2s;
+    transition-timing-function: ease-in;
+}
+a.home:hover {
+    width: 8vw;
+    height: 16vh;
+    transition: .2s;
+    transition-timing-function: ease-in;
 }
 a.fadeInAndOut:hover {
     background-color: white;
@@ -82,7 +95,6 @@ header {
     background: transparent;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: center;
 }
 .hero-toggle {
     display: flex;
@@ -111,8 +123,9 @@ header {
     background-position: center;
 }
 #iceman {
-    background-size: 100%;
+    background-size: 110%;
     background-image: url("../groupprojectsidework/images/iceman.jpg");
+    background-position-x: -.3vw;
     background-repeat: no-repeat;
 }
 #torch {
@@ -121,20 +134,102 @@ header {
     background-repeat: no-repeat;
     background-position: center;
 }
+.blur {
+    transition: all .7s ease;
+    filter: blur(7px);
+}
+.transition {
+    transition: all .7s ease;
+}
+.accordContainer {
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 1%;
+}
+button.accordion {
+  width: 100%;
+  background-color: whitesmoke;
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 15px 20px;
+  font-size: 18px;
+  color: #333;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+}
+button.accordion:after {
+  content: '\f055';
+  font-family: "fontawesome";
+  font-size: 14px;
+  float: right;
+	
+}
+button.accordion.is-open:after {
+  content: '\f056';
+}
+button.accordion:hover, button.accordion.is-open {
+  background-color: #ddd;
+}
+.accordion-content {
+  background-color: white;
+  border-left: 1px solid whitesmoke;
+  border-right: 1px solid whitesmoke;
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-in-out;
+}
+.weather-report {
+    display: flex;
+    flex-direction: row;
+}
+.weather-html {
+    background-color: white;
+    border-radius: 20px;
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script>
-$(function () {   
+$(document).ready(function () {
 var iceURL = localStorage.getItem('iceURL');
 var iceName = localStorage.getItem('iceName');
 var weatherConditions = localStorage.getItem('weatherConditions');
 if(weatherConditions === null) {
-    $('.weather').html(`The Weather Is Not Available Until You Click!`);
+    $('.weather-html').html(`The Weather Is Not Available Until You Click!`);
 } else {
-    $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
+    $('.weather-html').html(`The Weather Is Currently: ${weatherConditions}`);
 }
 $('.title').html(iceName);
 $('.url').html(`More info here!! ${iceURL}`);
+$( ".getweather, .hero-toggle, .home" ).hover(function() {
+    $('.background').removeClass("transition").addClass("blur");
+});
+$( ".getweather, .hero-toggle, .home" ).mouseout(function() {
+    $('.background').addClass("transition").removeClass("blur");
+});
+function accord(){
+    var accordions = document.getElementsByClassName("accordion");
+ for (var i = 0; i < accordions.length; i++) {
+   accordions[i].onclick = function() {
+     this.classList.toggle('is-open');
+  
+     var content = this.nextElementSibling;
+     if (content.style.maxHeight) {
+       // accordion is currently open, so close it
+       content.style.maxHeight = null;
+     } else {
+       // accordion is currently closed, so open it
+       content.style.maxHeight = content.scrollHeight + "px";
+     }
+   }
+ }
+}
+accord();
 var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';
 $('.getweather').on('click', (e) => {
     localStorage.removeItem('weatherConditions');                                
@@ -155,24 +250,64 @@ $('.getweather').on('click', (e) => {
     });
 });
 });
- </script>
+</script>
     <title>Random</title>
 </head>
 <body>
-<div class="background">
+<div class="background"></div>
 <div class="container_fluid">
 <div class="weather"></div>
 <div class="title"></div>
 <div class="url"></div>
 <header>
+<div class="weather-report">
+<div class="weather-html"></div>
 <a class="getweather" type="button">WEATHER</a>
+</div>
+<a class="home fadeInAndOut" href="index.html"></a>
 <a href="iceman.html" class="hero-toggle" id="iceman"></a>
 <a href="storm.html" class="hero-toggle" id="storm"></a>
 <a href="thor.html" class="hero-toggle" id="thor"></a>
 <a href="torch.html" class="hero-toggle" id="torch"></a>
-<a class="home fadeInAndOut" href="index.html"></a>
 </header>
-</div>
+<div class="accordContainer">
+       <button class="accordion">Overview</button>
+        <div class="accordion-content">
+          <p>
+                Robert "Bobby" Louis Drake was born in Floral Park, Long Island, New York to William Robert Drake and Madeline Beatrice Bass-Drake. Bobby is Jewish on his mother's side and Irish Catholic on his father's. Bobby first discovered his mutant abilities at a young age when he found himself unable to stop feeling cold and shivering.
+          </p>
+          
+        </div>
+     
+     
+        <button class="accordion">Power and Abilities</button>
+        <div class="accordion-content">
+          <ul>
+              <li>Thermokinesis: the ability to lower both his external and internal body temperature</li>
+              <li>Cryokinesis: The ability to generate, manipulate and fully control ice, snow and cold temperatures</li>
+              <li> Ice Clone Generation: The ability to generate ice clones of himself</li>
+              <li>Water Control </li>
+              <li> Energy Blasts</li>
+          </ul>
+        </div>
+     
+     
+        <button class="accordion">In Action</button>
+        <div class="accordion-content">
+                <img src="https://static.comicvine.com/uploads/original/11122/111220339/4595225-2982345676-24n05.jpg" alt="Ice man in action" width="100%" height="100%">
+
+        </div>
+
+        <button class="accordion">More Information</button>
+        <div class="accordion-content">
+          <div class="url"></div>
+        </div>
+
+        <button class="accordion">Meet the Real life Iceman</button>
+        <div class="accordion-content">
+                <img src="https://live.staticflickr.com/2946/15324714370_e47c269294_b.jpg" alt="Ice man in action" width="100%" height="100%">
+        </div>
+      </div>
 </div>
 </body>
 </html>

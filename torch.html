@@ -7,13 +7,8 @@
 
     <style>
  
-
 .background {
-    background-image: url(../groupprojectsidework/images/stormbg.jpg);
-
-body {
-    background-image: url("https://media2.giphy.com/media/PUkc1nBeiekNy/giphy.gif");
-
+    background-image: url("../groupprojectsidework/images/torch.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: fixed;
@@ -42,9 +37,8 @@ a.getweather {
     padding: 3px;
     margin: 3px;
     color: white;
-    background-image: url("https://i.gifer.com/Cbd.gif");
+    background-image: url("https://media.giphy.com/media/KV1s4kSJHaY3m/giphy.gif");
     background-size: 100%;
-    background-position-y: .1vh;
     background-repeat: no-repeat;
     transition: .2s;
     transition-timing-function: ease-in;
@@ -57,6 +51,7 @@ a.getweather:hover {
     -webkit-text-stroke-color: white;
     -webkit-text-stroke-width: 0.5px;
     font-weight: bolder;
+    background-position: center;
     transition: .2s;
     transition-timing-function: ease-in;
     width: 18vw;
@@ -150,33 +145,33 @@ header {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script>
 $(document).ready(function () {
- var stormURL = localStorage.getItem('stormURL');
- var stormName = localStorage.getItem('stormName');
- var weatherConditions = localStorage.getItem('weatherConditions');
- if(weatherConditions === null) {
+var torchURL = localStorage.getItem('torchURL');
+var torchName = localStorage.getItem('torchName');
+var weatherConditions = localStorage.getItem('weatherConditions');
+if(weatherConditions === null) {
     $('.weather').html(`The Weather Is Not Available Until You Click!`);
 } else {
     $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
 }
- $('.title').html(stormName);
- $('.url').html(`More info here!! ${stormURL}`);
- $( ".getweather, .hero-toggle, .home" ).hover(function() {
+$('.title').html(torchName);
+$('.url').html(`More info here!! ${torchURL}`);
+$( ".getweather, .hero-toggle, .home" ).hover(function() {
     $('.background').removeClass("transition").addClass("blur");
 });
 $( ".getweather, .hero-toggle, .home" ).mouseout(function() {
     $('.background').addClass("transition").removeClass("blur");
 });
- var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';                         
- $('.getweather').on('click', (e) => {   
-    localStorage.removeItem('weatherConditions');                                 
+var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';
+$('.getweather').on('click', (e) => {
+    localStorage.removeItem('weatherConditions');                                
     $.getJSON ( weatherURL )
     .done(function( response ) {
         console.log(response);
         var weatherConditions = response[Math.floor(Math.random()*48)].day;
         localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
-        if (weatherConditions === 'Patchy rain possible'||weatherConditions === 'Moderate rain'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+        if (weatherConditions === 'Patchy rain possible'||weatherConditions === 'Moderate rain'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
             window.location.href="storm.html";
-        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
+        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
             window.location.href="iceman.html";
         } else if (weatherConditions === 'Thundery outbreaks possible'||weatherConditions === 'Patchy light rain with thunder'||weatherConditions === 'Patchy light snow with thunder'||weatherConditions === 'Torrential rain shower'||weatherConditions === 'Moderate or heavy rain with thunder') {
             window.location.href="thor.html";
@@ -186,7 +181,7 @@ $( ".getweather, .hero-toggle, .home" ).mouseout(function() {
     });
 });
 });
-</script>
+ </script>
     <title>Random</title>
 </head>
 <body>

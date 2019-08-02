@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <link rel="icon" href="images/torchprofile.jpg">
     <style>
  
 .background {
-    background-image: url("../groupprojectsidework/images/torch.jpg");
+    background-image: url("images/torch.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -29,8 +32,8 @@
 }
 a.getweather {
     display: flex;
-    width: 8vw;
-    height: 13vh;
+    width: 280px;
+    height: 100px;
     justify-content: center;
     border-radius: 20px;
     font-size: 12px;
@@ -38,29 +41,26 @@ a.getweather {
     margin: 3px;
     color: white;
     background-image: url("https://media.giphy.com/media/KV1s4kSJHaY3m/giphy.gif");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    transition: .2s;
-    transition-timing-function: ease-in;
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: center;
 }
 a.getweather:hover {
     background-image: url("https://media.giphy.com/media/fA6opG8tgo2KQ/giphy.gif");
-    cursor: pointer;
-    color: rgb(202, 224, 4);
-    font-size: 18px;
-    -webkit-text-stroke-color: white;
-    -webkit-text-stroke-width: 0.5px;
-    font-weight: bolder;
     background-position: center;
-    transition: .2s;
-    transition-timing-function: ease-in;
-    width: 18vw;
+    background-size: cover;
+    cursor: pointer;
+    font-weight: bolder;
+    color: white;
+}
+a.getweather:active {
+    transform: translate(10px, 10px);
 }
 a.home {
     display: flex;
-    width: 4vw;
-    height: 8vh;
-    background-image: url("../groupprojectsidework/images/home.png");
+    width: 50px;
+    height: 50px;
+    background-image: url("images/home.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: white;
@@ -69,22 +69,32 @@ a.home {
     transition-timing-function: ease-in;
 }
 a.home:hover {
-    width: 8vw;
-    height: 16vh;
+    width: 65px;
+    height: 65px;
     transition: .2s;
     transition-timing-function: ease-in;
 }
 a.fadeInAndOut:hover {
     background-color: white;
-    animation: fade 5s infinite;
+    animation-name: rotate;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: 50% 0%;
+    animation-timing-function: ease-in-out;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(20deg);
     }
-    @keyframes fade {
-    0% { background-color: white; }
-    25% { background-color: red; }
-    50% { background-color: green; }
-    75% { background-color: lightpink; }
-    100% { background-color: white; }
+    100% {
+        transform: rotate(-20deg);
     }
+}
+a.home:active {
+    animation: none;
+    background-color: red;
+}
 header {
     display: flex;
     position: absolute;
@@ -98,39 +108,42 @@ header {
 }
 .hero-toggle {
     display: flex;
-    width: 4vw;
-    height: 8vh;
+    width: 50px;
+    height: 50px;
     border-radius: 50px;
     transition: .2s;
     transition-timing-function: ease-in;
 }
 .hero-toggle:hover {
-    width: 8vw;
-    height: 16vh;
+    width: 100px;
+    height: 100px;
     transition: .2s;
     transition-timing-function: ease-in;
 }
+.hero-toggle:active {
+    transform: translate(10px, 10px);
+}
 #storm {
     background-size: 110%;
-    background-image: url("../groupprojectsidework/images/storm.jpeg");
+    background-image: url("images/storm.jpeg");
     background-repeat: no-repeat;
     background-position: center;
 }
 #thor {
     background-size: 125%;
-    background-image: url("../groupprojectsidework/images/thorprofile.jpg");
+    background-image: url("images/thorprofile.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
 #iceman {
     background-size: 110%;
-    background-image: url("../groupprojectsidework/images/iceman.jpg");
+    background-image: url("images/iceman.jpg");
     background-position-x: -.3vw;
     background-repeat: no-repeat;
 }
 #torch {
     background-size: 120%;
-    background-image: url("../groupprojectsidework/images/torchprofile.jpg");
+    background-image: url("images/torchprofile.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -141,39 +154,343 @@ header {
 .transition {
     transition: all .7s ease;
 }
+.accordContainer {
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1%;
+  background: transparent;
+}
+button.accordion {
+  width: 100%;
+  background: linear-gradient(to right, white, rgb(129, 128, 128));
+  border: none;
+  outline: none;
+  text-align: center;
+  padding: 5px 10px;
+  font-size: 18px;
+  color: #333;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: 0.3s linear;
+}
+button.accordion:after {
+  content: '\f055';
+  font-family: "fontawesome";
+  font-size: 14px;
+  float: right;
+}
+button.accordion.is-open:after {
+  content: '\f056';
+}
+button.accordion:hover {
+    animation: colorshift 6s infinite;
+}
+@keyframes colorshift {
+    0% { color: #333 }
+    10% { color: red}
+    20% { color: orange }
+    30% { color: yellow}
+    40% { color: green }
+    50% { color: blue}
+    60% { color: purple }
+    70% { color: pink}
+    80% { color: white }
+    90% { color: brown}
+    100% { color: #333 }
+}
+button.accordion.is-open:hover {
+    animation: none;
+}
+.accordion-content {
+  background-color: white;
+  border-left: 1px solid whitesmoke;
+  border-right: 1px solid whitesmoke;
+  padding: 0 10px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-in-out;
+}
+.weather-report {
+    display: flex;
+    flex-direction: row;
+}
+.weather-html {
+    display: inline-block;
+    padding: 6px;
+    background: linear-gradient(to right, rgb(173, 173, 173), rgb(240, 239, 239));
+    border-radius: 20px;
+    font-size: 15px;
+    text-align: center;
+    margin: 5px;
+    height: fit-content;
+    width: fit-content;
+}
+#main-logo {
+    position: fixed;
+    right: 1%;
+    bottom: 1%;
+    width: 30vw;
+    height: auto;
+    animation: opacity 1.5s infinite;
+}
+#torch-logo {
+    position: fixed;
+    left: 1%;
+    top: 1%;
+    width: 54vw;
+    height: auto;
+}
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+iframe {
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+#action-gif {
+    background-image: url("https://media.giphy.com/media/KB2eqtwWflNzW/giphy.gif");
+    background-size: cover;
+}
+#cosplay {
+    background-image: url("images/costorch.jpg");
+    background-size: cover;
+}
+#mainProductImage {
+    background-image: url("https://i.pinimg.com/originals/c0/23/52/c02352cd22fa756d398778731fda3001.jpg");
+    background-size: cover;
+    background-color: lightgray;
+    color: white;
+}
+.textbox {
+    color: darkred;
+    height: 63px;
+    width: auto;
+    margin-bottom: 2px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.quote {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bolder;
+}
+.quoteby {
+    display: flex;
+    text-align: center;
+}
+#imgtog:hover {
+    cursor: pointer;
+}
+@media screen and (max-width: 690px), screen and (max-width: 740px) and (orientation: landscape) {
+    .accordContainer {
+        display: none;
+    }
+    .weather-report {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .weather-html {
+        margin: 0;
+    }
+    .getweather {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait), screen and (max-width: 1024px) and (orientation:  landscape) {
+    #torch-logo {
+        width: 50%;
+        height: auto;
+    }
+    a.getweather {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        font-size: 0;
+    }
+    a.getweather:hover {
+        font-size: 0;
+        background-repeat: repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    .weather-report {
+        align-items: flex-end;
+    }
+    .button.accordion, .button.accordion:hover, .button.accordion:active {
+        animation: none;
+        color: #333;
+    }
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+    .accordContainer {
+        display: flex;
+        width: 96%;
+    }
+    iframe {
+        width: 330px;
+        height: 500px;
+    }
+    .textbox {
+        height: 30px;
+    }
+    .quote {
+        font-size: 10px;
+        margin: 0;
+    }
+    .quoteby {
+        display: none;
+    }
+    #imgtog {
+        margin-bottom: 0;
+    }
+    .button.accordion, .button.accordion:hover, .button.accordion:hover::after {
+        animation: none;
+        color: #333;
+    }
+    .button.accordion.is-open {
+        animation: none;
+    }
+    .weather-report {
+        align-items: flex-end;
+    }
+}
+@media screen and (max-width: 670px) and (orientation:  landscape)
+{
+    .accordContainer {
+        display: none;
+    }
+    .weather-report {
+        align-items: flex-end;
+    }
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script>
 $(document).ready(function () {
-var torchURL = localStorage.getItem('torchURL');
-var torchName = localStorage.getItem('torchName');
-var weatherConditions = localStorage.getItem('weatherConditions');
-if(weatherConditions === null) {
-    $('.weather').html(`The Weather Is Not Available Until You Click!`);
+var torchURL = JSON.parse(localStorage.getItem('torchURL'));
+var location = JSON.parse(localStorage.getItem('location'));
+var coordinates = JSON.parse(localStorage.getItem('coordinates'));
+var temperature = JSON.parse(localStorage.getItem('temperature'));
+var conditions = JSON.parse(localStorage.getItem('conditions'));
+if(conditions !== 'Clear') {
+    $('.weather-html').css('display','none');
+} else if (location === `, undefined`) {
+    var location = 'The Middle of Nowhere';
+    $('.weather-html').html(`${location.bold().fontcolor('darkred')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('darkred')}`);
 } else {
-    $('.weather').html(`The Weather Is Currently: ${weatherConditions}`);
+    $('.weather-html').html(`${location.bold().fontcolor('darkred')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('darkred')}`);
 }
-$('.title').html(torchName);
-$('.url').html(`More info here!! ${torchURL}`);
-$( ".getweather, .hero-toggle, .home" ).hover(function() {
-    $('.background').removeClass("transition").addClass("blur");
+$( ".getweather" ).hover(function() {
+    $('#torch-logo, .accordContainer, .background, .hero-toggle, .home').removeClass("transition").addClass("blur");
 });
-$( ".getweather, .hero-toggle, .home" ).mouseout(function() {
-    $('.background').addClass("transition").removeClass("blur");
+$( ".getweather" ).mouseout(function() {
+    $('#torch-logo, .accordContainer, .background, .hero-toggle, .home').addClass("transition").removeClass("blur");
 });
-var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';
+$( ".hero-toggle, .home" ).hover(function() {
+    $('.weather-report, #torch-logo, .accordContainer, .background').removeClass("transition").addClass("blur");
+});
+$( ".hero-toggle, .home" ).mouseout(function() {
+    $('.weather-report, #torch-logo, .accordContainer, .background').addClass("transition").removeClass("blur");
+});
+function accord(){
+    $('#iframe').attr('src',`${torchURL}`);
+    var accordions = document.querySelectorAll(".accordion");
+    var accordcontent = document.querySelectorAll(".accordion-content");
+    for (var i = 0; i < accordions.length; i++) {
+        accordions[i].onclick = function() {
+            var newColor = $(this).css('color');
+            accordions.forEach((accord) => {
+                accord.classList.remove('is-open');
+                accord.style.color = '#333';
+            })
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                this.style.color = '#333';
+            } else {
+                this.style.color = newColor;
+            }
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                accordcontent.forEach((accord) => {
+                    accord.style.maxHeight = null;
+                    this.classList.add('is-open');
+                });
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    }
+}
+accord();
+var content = [
+    ["“ Man, this has to be my third-worst breakup ever!”", "https://www.syfy.com/sites/syfy/files/wire/legacy/3170603-storm.jpg"],
+    ["“Flame on!”", "https://www.superherodb.com/pictures2/portraits/10/100/362.jpg?t=1492410309" ],
+    ["“Does anybody besides me ever get tired of feeling like the dumb kid in science class? ”", "https://fsa.zobj.net/crop.php?r=6_8cT6T-Dtg3I4JDrqkn0ru7W9oiaqESqbFvyM7wkjAIRq7M8t9ZCZHScXWfzFSgKmo-n0ohalZTLUGpS4oNb0u2D4ZEw_1f6tS-YNGG7sLzhiggkcilI3ELSTqtT_ufiQ1tgVM8ST_S5ypEtCbRIfOTPSwcwhvG_RQd7myq6Ck7PI5ROw8W2NoqT2Y"],
+    ["“This is my house now. Welcome to the Negative Zone.”", "https://vignette.wikia.nocookie.net/marveldatabase/images/6/63/All-New_Invaders_Vol_1_4_Textless.jpg/revision/latest?cb=20140116231705"],
+    ["“Johnny Storm... The Human Torch... ...not a thief... not a spoiled kid... not a quitter... ...a hero.”", "https://i.pinimg.com/originals/8d/80/90/8d809071659811bfedaf142a0e04e0bb.jpg"],
+    ["“ I need to be alone ... to sort things out... to decide just what it is I am!”", "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5e1fc080-3860-4c9f-827b-6a93bb6dc87d/db95rw-cf219eba-7c22-4fca-bba6-d7bdfde93638.jpg/v1/fill/w_745,h_1072,q_70,strp/human_torch_by_nichollica_db95rw-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI5NCIsInBhdGgiOiJcL2ZcLzVlMWZjMDgwLTM4NjAtNGM5Zi04MjdiLTZhOTNiYjZkYzg3ZFwvZGI5NXJ3LWNmMjE5ZWJhLTdjMjItNGZjYS1iYmE2LWQ3YmRmZGU5MzYzOC5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ESMHDOzaiS5Qm5vGJZDPXqnZ8a26rgE7V68bq2cpOt8"],
+    ["“Sometimes I feel without my powers, I'd be nothing”", "http://www.them6p.com/wp-content/uploads/2014/06/Hammond1.jpg"],
+    ["“Man, Oh Man! That was a close one!”", "https://static1.comicvine.com/uploads/original/12/128032/5447024-6917399415-fanta.jpg"],
+    ["“I once accidently set this guy named John on fire ”", "http://comicbasics.com/wp-content/uploads/2017/09/Human-Torch.jpg"],
+];
+// set counter to 1
+var count = 1;
+$("#imgtog").click(function(){
+    // check is end of array reached and start from beginning
+    count == content.length ? count = 0 : "";
+    // fade h4 out
+    $(".quote").fadeOut(800, function() {
+      // use counter to get the correct index of array to change the h4 to the relevent quote
+      $(".quote").html(content[count][0]);
+      // use counter to get the correct index of array to change the h4 to the relevent image source
+      $("#mainProductImage").css('backgroundImage',`url(${content[count][1]})`);
+      // fade h1 back in after everything else is done
+      $(".quote").fadeIn(800);
+      // increment count by 1
+      count++;
+    });
+});
 $('.getweather').on('click', (e) => {
-    localStorage.removeItem('weatherConditions');                                
+    const lat = (Math.floor(Math.random()*180) - 90);
+    const lon = (Math.floor(Math.random()*360) - 180);
+    const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2f4580c1da2a1471787ee4c356181fd1`;
     $.getJSON ( weatherURL )
     .done(function( response ) {
-        console.log(response);
-        var weatherConditions = response[Math.floor(Math.random()*48)].day;
-        localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
-        if (weatherConditions === 'Patchy rain possible'||weatherConditions === 'Moderate rain'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+        
+        var location = `${response.name}, ${response.sys.country}`;
+        var coordinates = `Latitude: ${response.coord.lat}, Longitude: ${response.coord.lon}`;
+        var fartemp = Math.round(((response.main.temp - 273.15) * (9/5)) + 32);
+        var temperature = `${fartemp}°F`;
+        var conditions = `${response.weather[0].main}`;
+        localStorage.setItem('location', JSON.stringify(location));
+        localStorage.setItem('coordinates', JSON.stringify(coordinates));
+        localStorage.setItem('temperature', JSON.stringify(temperature));
+        localStorage.setItem('conditions', JSON.stringify(conditions));
+        if (conditions === 'Rain'||conditions === 'Clouds') {
             window.location.href="storm.html";
-        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
+        } else if (conditions === 'Snow') {
             window.location.href="iceman.html";
-        } else if (weatherConditions === 'Thundery outbreaks possible'||weatherConditions === 'Patchy light rain with thunder'||weatherConditions === 'Patchy light snow with thunder'||weatherConditions === 'Torrential rain shower'||weatherConditions === 'Moderate or heavy rain with thunder') {
+        } else if (conditions === 'Thunderstorm') {
             window.location.href="thor.html";
         } else {
             window.location.href="torch.html";
@@ -181,23 +498,50 @@ $('.getweather').on('click', (e) => {
     });
 });
 });
- </script>
-    <title>Random</title>
+</script>
+    <title>Human Torch</title>
 </head>
 <body>
 <div class="background"></div>
 <div class="container_fluid">
-<div class="weather"></div>
-<div class="title"></div>
-<div class="url"></div>
+<img src="images/humantorch.png" id="torch-logo">
+<img src="images/main.png" id="main-logo">
 <header>
+<div class="weather-report">
+<div class="weather-html"></div>
 <a class="getweather" type="button">WEATHER</a>
+</div>
 <a class="home fadeInAndOut" href="index.html"></a>
 <a href="iceman.html" class="hero-toggle" id="iceman"></a>
 <a href="storm.html" class="hero-toggle" id="storm"></a>
 <a href="thor.html" class="hero-toggle" id="thor"></a>
 <a href="torch.html" class="hero-toggle" id="torch"></a>
 </header>
-</div>
+<div class="accordContainer">
+        <button class="accordion">OVERVIEW</button>
+         <div class="accordion-content" id="heroURL">
+         <iframe id="iframe" width="470" height="565"></iframe>
+         </div>     
+      
+         <button class="accordion">IN ACTION</button>
+         <div class="accordion-content">
+         <iframe id="action-gif" width="470" height="565" scrolling="no"></iframe>
+         </div>
+
+         <button class="accordion"> IMAGES AND QUOTES GALLERY</button>
+         <div class="accordion-content" id="imgtog">
+         <iframe id="mainProductImage" width="470" height="500" scrolling ="no"></iframe>
+         <div class="textbox">
+         <div class="quote">“Click here for a new Image and Quote”</div>
+         <div class="quoteby">- Human Torch</div>
+         </div>
+         </div>
+ 
+         <button class="accordion">MEET THE REAL LIFE HUMAN TORCH</button>
+         <div class="accordion-content">
+         <iframe id="cosplay" width="470" height="565" scrolling="no"></iframe>
+         </div>
+       </div>
+ </div>
 </body>
 </html>

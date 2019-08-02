@@ -1,3 +1,4 @@
+<!-- this is final -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
-    <link rel="icon" href="images/iceman.jpg">
+    <link rel="icon" href="images/storm.jpeg">
     <style>
  
 .background {
-    background-image: url("https://i0.wp.com/wallur.com/wp-content/uploads/2016/12/x-men-background-17.jpg?fit=1920%2C1080");
+    background-image: url("images/stormbg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -39,11 +40,11 @@ a.getweather {
     font-size: 12px;
     padding: 3px;
     margin: 3px;
-    color: gray;
-    background-image: url("https://media.giphy.com/media/Cv7wrQjYcd6hO/giphy.gif");
-    background-size: 100%;
+    color: white;
+    background-image: url("https://i.gifer.com/Cbd.gif");
+    background-size: contain;
+    background-repeat: repeat-x;
     background-position: center;
-    background-repeat: no-repeat;
 }
 a.getweather:hover {
     background-image: url("https://media.giphy.com/media/fA6opG8tgo2KQ/giphy.gif");
@@ -238,11 +239,11 @@ button.accordion.is-open:hover {
     height: auto;
     animation: opacity 1.5s infinite;
 }
-#ice-logo {
+#storm-logo {
     position: fixed;
     left: 1%;
     top: 1%;
-    width: 40vw;
+    width: 35vw;
     height: auto;
 }
 @keyframes opacity {
@@ -263,22 +264,22 @@ iframe {
     margin-bottom: 2px;
 }
 #action-gif {
-    background-image: url("https://static.comicvine.com/uploads/original/11122/111220339/4595225-2982345676-24n05.jpg");
+    background-image: url("https://media.giphy.com/media/l41YuHALY8Zfa3OhO/giphy.gif");
     background-color: lightgray;
 }
 #cosplay {
-    background-image: url("images/icemantroll.jpg");
+    background-image: url("images/cosstorm.jpg");
     background-size: contain;
     background-color: lightgray;
 }
 #mainProductImage {
-    background-image: url("https://boundingintocomics.com/files/2019/03/2019.03.22-01.48-boundingintocomics-5c943f06ebc3e.png");
+    background-image: url("https://i.pinimg.com/736x/5e/fc/fd/5efcfd48942d6ca199a0f04f491e48b6.jpg");
     background-size: cover;
     background-color: lightgray;
     color: white;
 }
 .textbox {
-    color: rgb(77, 192, 238);
+    color: purple;
     height: 63px;
     width: auto;
     margin-bottom: 2px;
@@ -307,8 +308,7 @@ iframe {
     }
     .weather-report {
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
+        align-items: flex-end;
     }
     .weather-html {
         margin: 0;
@@ -319,7 +319,7 @@ iframe {
 }
 
 @media screen and (max-width: 768px) and (orientation: portrait), screen and (max-width: 1024px) and (orientation:  landscape) {
-    #ice-logo {
+    #storm-logo {
         width: 50%;
         height: auto;
     }
@@ -390,33 +390,33 @@ iframe {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script>
 $(document).ready(function () {
-var iceURL = JSON.parse(localStorage.getItem('iceURL'));
+var stormURL = JSON.parse(localStorage.getItem('stormURL'));
 var location = JSON.parse(localStorage.getItem('location'));
 var coordinates = JSON.parse(localStorage.getItem('coordinates'));
 var temperature = JSON.parse(localStorage.getItem('temperature'));
 var conditions = JSON.parse(localStorage.getItem('conditions'));
-if(conditions !== 'Snow') {
+if(conditions !== 'Rain'&&conditions !== 'Clouds') {    
     $('.weather-html').css('display','none');
-} else if (location === ', undefined') {
+} else if (location === `, undefined`) {
     var location = 'The Middle of Nowhere';
-    $('.weather-html').html(`${location.bold().fontcolor('rgb(77, 192, 238)')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('rgb(77, 192, 238)')}`);
+    $('.weather-html').html(`${location.bold().fontcolor('purple')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('purple')}`);
 } else {
-    $('.weather-html').html(`${location.bold().fontcolor('rgb(77, 192, 238)')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('rgb(77, 192, 238)')}`);
+    $('.weather-html').html(`${location.bold().fontcolor('purple')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('purple')}`);
 }
 $( ".getweather" ).hover(function() {
-    $('#ice-logo, .accordContainer, .background, .hero-toggle, .home').removeClass("transition").addClass("blur");
+    $('#storm-logo, .accordContainer, .background, .hero-toggle, .home').removeClass("transition").addClass("blur");
 });
 $( ".getweather" ).mouseout(function() {
-    $('#ice-logo, .accordContainer, .background, .hero-toggle, .home').addClass("transition").removeClass("blur");
+    $('#storm-logo, .accordContainer, .background, .hero-toggle, .home').addClass("transition").removeClass("blur");
 });
 $( ".hero-toggle, .home" ).hover(function() {
-    $('.weather-report, #ice-logo, .accordContainer, .background').removeClass("transition").addClass("blur");
+    $('.weather-report, #storm-logo, .accordContainer, .background').removeClass("transition").addClass("blur");
 });
 $( ".hero-toggle, .home" ).mouseout(function() {
-    $('.weather-report, #ice-logo, .accordContainer, .background').addClass("transition").removeClass("blur");
+    $('.weather-report, #storm-logo, .accordContainer, .background').addClass("transition").removeClass("blur");
 });
 function accord(){
-    $('#iframe').attr('src',`${iceURL}`);
+    $('#iframe').attr('src',`${stormURL}`);
     var accordions = document.querySelectorAll(".accordion");
     var accordcontent = document.querySelectorAll(".accordion-content");
     for (var i = 0; i < accordions.length; i++) {
@@ -446,15 +446,15 @@ function accord(){
 }
 accord();
 var content = [
-    ["“I need you to chill out!”", "https://boundingintocomics.com/files/2019/03/2019.03.22-01.48-boundingintocomics-5c943f06ebc3e.png" ],
-    ["“An Iceman never kisses and tells.”", "https://i.pinimg.com/originals/68/4d/5a/684d5a1f3a0c14239a73d5f6e4c914df.jpg"],
-    ["“Right now, I kinda need some time to be alone -- and think.”", "https://i.pinimg.com/originals/30/e5/df/30e5df1ebb73a8701c952f89fe21c44f.jpg"],
-    ["“Teamwork. You gotta love it.”", "http://1.bp.blogspot.com/-W8NDWkq0EXI/Ti5yzWhboAI/AAAAAAAABo0/flZ8YFpZz9Q/s1600/Iceman.JPG"],
-    ["“Was a time people laughed at my jokes.”", "https://i.pinimg.com/originals/36/56/a4/3656a4944fb272fbb5cc00d1230977ab.jpg"],
-    ["“I am pulling the most totally bizarre vibes off the others.”", "https://vignette.wikia.nocookie.net/marveldatabase/images/c/c7/Iceman_Vol_3_8_Textless.jpg/revision/latest?cb=20170920001844"],
-    ["“Oh. Hey. Kitty. Four hours in a jet with my favorite ex-girlfriend. Yaaaay.”", "https://vignette.wikia.nocookie.net/marveldatabase/images/2/2d/Robert_Drake_%28Earth-TRN517%29_from_Marvel_Contest_of_Champions_001.jpg/revision/latest?cb=20170401112148"],
-    ["“ Sinister won't be bothering us for a long time”", "https://pm1.narvii.com/5812/c444bcfba3f67ef170e8af4613e6515ddf5037f3_hq.jpg"],
-    ["“ I got rejected from the likes of Eugene”", "https://scontent-cdg2-1.cdninstagram.com/vp/a2cccbee8de1401023086e68252c6fc7/5DB9381B/t51.2885-15/e35/20968900_102885273776231_5923734721321238528_n.jpg?_nc_ht=scontent-cdg2-1.cdninstagram.com&ig_cache_key=MTU4NDI4ODg5NDIyNzQxNzA2MQ%3D%3D.2"],
+    ["“To me, my X-Men! Hold the line! Not one mutant dies here today... not one!”", "https://i.pinimg.com/736x/5e/fc/fd/5efcfd48942d6ca199a0f04f491e48b6.jpg"],
+    ["“Am I not beautiful, Lord Doom? And terrible? Do you not fear me? You should.”", "https://i.pinimg.com/736x/53/b5/e6/53b5e66adbea0b1b7dcaedfa9dc60b6d.jpg" ],
+    ["“If Thor is considered a God for only controlling lightning, then I think I deserve a promotion.”", "https://www.fightersgeneration.com/nx/chars/storm-by-gregland.jpg"],
+    ["“Just as I thought, a boy playing a man's game. You were wrong about me, Shinobi... you were wrong about everything.”", "http://images2.fanpop.com/image/photos/10000000/Storm-marvel-superheroines-10049983-900-1278.jpg"],
+    ["“My victory I took for granted. This response is unexpected. I've never felt anything like it. It's glorious. And I want more!”", "https://i.pinimg.com/736x/92/bd/f1/92bdf176f9e556a82f20b7bbcddef598--storm-marvel-storm-xmen.jpg"],
+    ["“You do not understand TRUE power!”", "http://images5.fanpop.com/image/photos/30600000/Storm-women-of-the-x-30612783-719-1111.jpg"],
+    ["“A storm is gathering, fear its fury!”", "https://i.pinimg.com/originals/87/c9/fd/87c9fd159e28b72f753b8fe0fa48765f.png"],
+    ["“Let my fury rain down upon evil!”", "https://i.pinimg.com/736x/b2/17/6b/b2176b4d582c5eb18df0d6eae744a3e1.jpg"],
+    ["“By the Goddess, that felt GOOD!“", "https://static.comicvine.com/uploads/original/6/64880/4675619-3721740208-storm.jpg"],
 ];
 // set counter to 1
 var count = 1;
@@ -472,13 +472,14 @@ $("#imgtog").click(function(){
       // increment count by 1
       count++;
     });
-});
-$('.getweather').on('click', (e) => {
+});                      
+$('.getweather').on('click', (e) => {   
     const lat = (Math.floor(Math.random()*180) - 90);
     const lon = (Math.floor(Math.random()*360) - 180);
     const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2f4580c1da2a1471787ee4c356181fd1`;
     $.getJSON ( weatherURL )
     .done(function( response ) {
+        
         var location = `${response.name}, ${response.sys.country}`;
         var coordinates = `Latitude: ${response.coord.lat}, Longitude: ${response.coord.lon}`;
         var fartemp = Math.round(((response.main.temp - 273.15) * (9/5)) + 32);
@@ -501,12 +502,12 @@ $('.getweather').on('click', (e) => {
 });
 });
 </script>
-    <title>Iceman</title>
+    <title>Storm</title>
 </head>
 <body>
 <div class="background"></div>
 <div class="container_fluid">
-<img src="../idework/images/icemanlogo.png" id="ice-logo">
+<img src="images/stormlogo.png" id="storm-logo">
 <img src="images/main.png" id="main-logo">
 <header>
 <div class="weather-report">
@@ -520,30 +521,30 @@ $('.getweather').on('click', (e) => {
 <a href="torch.html" class="hero-toggle" id="torch"></a>
 </header>
 <div class="accordContainer">
-       <button class="accordion">OVERVIEW</button>
-        <div class="accordion-content" id="heroURL">
-        <iframe id="iframe" width="470" height="565"></iframe>
-        </div>     
-     
-        <button class="accordion">IN ACTION</button>
-        <div class="accordion-content">
-        <iframe id="action-gif" width="470" height="565" scrolling="no"></iframe>
-        </div>
+        <button class="accordion">OVERVIEW</button>
+         <div class="accordion-content" id="heroURL">
+         <iframe id="iframe" width="470" height="565"></iframe>
+         </div>     
+      
+         <button class="accordion">IN ACTION</button>
+         <div class="accordion-content">
+         <iframe id="action-gif" width="470" height="565" scrolling="no"></iframe>
+         </div>
 
-        <button class="accordion"> IMAGES AND QUOTES GALLERY</button>
-        <div class="accordion-content" id="imgtog">
-        <iframe id="mainProductImage" width="470" height="500" scrolling ="no"></iframe>
-        <div class="textbox">
-        <div class="quote">“Click here for a new Image and Quote”</div>
-        <div class="quoteby">- Iceman</div>
-        </div>
-        </div>
-
-        <button class="accordion">MEET THE REAL LIFE ICEMAN</button>
-        <div class="accordion-content">
-        <iframe id="cosplay" alt="Ice man in action" width="470" height="565" scrolling="no"></iframe>
-        </div>
-      </div>
-</div>
+         <button class="accordion"> IMAGES AND QUOTES GALLERY</button>
+         <div class="accordion-content" id="imgtog">
+         <iframe id="mainProductImage" width="470" height="500" scrolling ="no"></iframe>
+         <div class="textbox">
+         <div class="quote">“Click here for a new Image and Quote”</div>
+         <div class="quoteby">- Storm</div>
+         </div>
+         </div>
+ 
+         <button class="accordion">MEET THE REAL LIFE STORM</button>
+         <div class="accordion-content">
+         <iframe id="cosplay" width="470" height="565" scrolling="no"></iframe>
+         </div>
+       </div>
+ </div>
 </body>
 </html>

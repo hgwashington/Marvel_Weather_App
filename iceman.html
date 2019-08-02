@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <link rel="icon" href="images/iceman.jpg">
     <style>
  
 .background {
     background-image: url("https://i0.wp.com/wallur.com/wp-content/uploads/2016/12/x-men-background-17.jpg?fit=1920%2C1080");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -29,8 +32,8 @@
 }
 a.getweather {
     display: flex;
-    width: 8vw;
-    height: 13vh;
+    width: 280px;
+    height: 100px;
     justify-content: center;
     border-radius: 20px;
     font-size: 12px;
@@ -41,26 +44,23 @@ a.getweather {
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    transition: .2s;
-    transition-timing-function: ease-in;
 }
 a.getweather:hover {
     background-image: url("https://media.giphy.com/media/fA6opG8tgo2KQ/giphy.gif");
+    background-position: center;
+    background-size: cover;
     cursor: pointer;
-    color: rgb(202, 224, 4);
-    font-size: 18px;
-    -webkit-text-stroke-color: white;
-    -webkit-text-stroke-width: 0.5px;
     font-weight: bolder;
-    transition: .2s;
-    transition-timing-function: ease-in;
-    width: 18vw;
+    color: white;
+}
+a.getweather:active {
+    transform: translate(10px, 10px);
 }
 a.home {
     display: flex;
-    width: 4vw;
-    height: 8vh;
-    background-image: url("../groupprojectsidework/images/home.png");
+    width: 50px;
+    height: 50px;
+    background-image: url("images/home.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: white;
@@ -69,22 +69,32 @@ a.home {
     transition-timing-function: ease-in;
 }
 a.home:hover {
-    width: 8vw;
-    height: 16vh;
+    width: 65px;
+    height: 65px;
     transition: .2s;
     transition-timing-function: ease-in;
 }
 a.fadeInAndOut:hover {
     background-color: white;
-    animation: fade 5s infinite;
+    animation-name: rotate;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: 50% 0%;
+    animation-timing-function: ease-in-out;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(20deg);
     }
-    @keyframes fade {
-    0% { background-color: white; }
-    25% { background-color: red; }
-    50% { background-color: green; }
-    75% { background-color: lightpink; }
-    100% { background-color: white; }
+    100% {
+        transform: rotate(-20deg);
     }
+}
+a.home:active {
+    animation: none;
+    background-color: red;
+}
 header {
     display: flex;
     position: absolute;
@@ -98,39 +108,42 @@ header {
 }
 .hero-toggle {
     display: flex;
-    width: 4vw;
-    height: 8vh;
+    width: 50px;
+    height: 50px;
     border-radius: 50px;
     transition: .2s;
     transition-timing-function: ease-in;
 }
 .hero-toggle:hover {
-    width: 8vw;
-    height: 16vh;
+    width: 100px;
+    height: 100px;
     transition: .2s;
     transition-timing-function: ease-in;
 }
+.hero-toggle:active {
+    transform: translate(10px, 10px);
+}
 #storm {
     background-size: 110%;
-    background-image: url("../groupprojectsidework/images/storm.jpeg");
+    background-image: url("images/storm.jpeg");
     background-repeat: no-repeat;
     background-position: center;
 }
 #thor {
     background-size: 125%;
-    background-image: url("../groupprojectsidework/images/thorprofile.jpg");
+    background-image: url("images/thorprofile.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
 #iceman {
     background-size: 110%;
-    background-image: url("../groupprojectsidework/images/iceman.jpg");
+    background-image: url("images/iceman.jpg");
     background-position-x: -.3vw;
     background-repeat: no-repeat;
 }
 #torch {
     background-size: 120%;
-    background-image: url("../groupprojectsidework/images/torchprofile.jpg");
+    background-image: url("images/torchprofile.jpg");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -143,43 +156,61 @@ header {
 }
 .accordContainer {
   width: 80%;
-  max-width: 400px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 1%;
+  background: transparent;
 }
 button.accordion {
   width: 100%;
-  background-color: whitesmoke;
+  background: linear-gradient(to right, white, rgb(129, 128, 128));
   border: none;
   outline: none;
   text-align: center;
-  padding: 15px 20px;
+  padding: 5px 10px;
   font-size: 18px;
   color: #333;
   border: 1px solid black;
   cursor: pointer;
-  transition: background-color 0.2s linear;
+  transition: 0.3s linear;
 }
 button.accordion:after {
   content: '\f055';
   font-family: "fontawesome";
   font-size: 14px;
   float: right;
-	
 }
 button.accordion.is-open:after {
   content: '\f056';
 }
-button.accordion:hover, button.accordion.is-open {
-  background-color: #ddd;
+button.accordion:hover {
+    animation: colorshift 6s infinite;
+}
+@keyframes colorshift {
+    0% { color: #333 }
+    10% { color: red}
+    20% { color: orange }
+    30% { color: yellow}
+    40% { color: green }
+    50% { color: blue}
+    60% { color: purple }
+    70% { color: pink}
+    80% { color: white }
+    90% { color: brown}
+    100% { color: #333 }
+}
+button.accordion.is-open:hover {
+    animation: none;
 }
 .accordion-content {
   background-color: white;
   border-left: 1px solid whitesmoke;
   border-right: 1px solid whitesmoke;
-  padding: 0 20px;
+  padding: 0 10px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-in-out;
@@ -190,67 +221,278 @@ button.accordion:hover, button.accordion.is-open {
 }
 .weather-html {
     display: inline-block;
-    padding: 5px;
-    margin: 3px;
-    background-color: white;
+    padding: 6px;
+    background: linear-gradient(to right, rgb(173, 173, 173), rgb(240, 239, 239));
     border-radius: 20px;
-    text-align: center;
     font-size: 15px;
+    text-align: center;
+    margin: 5px;
     height: fit-content;
-    width: 4vw;
-    height: 8vh;
+    width: fit-content;
+}
+#main-logo {
+    position: fixed;
+    right: 1%;
+    bottom: 1%;
+    width: 30vw;
+    height: auto;
+    animation: opacity 1.5s infinite;
+}
+#ice-logo {
+    position: fixed;
+    left: 1%;
+    top: 1%;
+    width: 40vw;
+    height: auto;
+}
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+iframe {
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+#action-gif {
+    background-image: url("https://static.comicvine.com/uploads/original/11122/111220339/4595225-2982345676-24n05.jpg");
+    background-color: lightgray;
+}
+#cosplay {
+    background-image: url("images/icemantroll.jpg");
+    background-size: contain;
+    background-color: lightgray;
+}
+#mainProductImage {
+    background-image: url("https://boundingintocomics.com/files/2019/03/2019.03.22-01.48-boundingintocomics-5c943f06ebc3e.png");
+    background-size: cover;
+    background-color: lightgray;
+    color: white;
+}
+.textbox {
+    color: rgb(77, 192, 238);
+    height: 63px;
+    width: auto;
+    margin-bottom: 2px;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.quote {
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bolder;
+}
+.quoteby {
+    display: flex;
+    text-align: center;
+}
+#imgtog:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 690px), screen and (max-width: 740px) and (orientation: landscape) {
+    .accordContainer {
+        display: none;
+    }
+    .weather-report {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .weather-html {
+        margin: 0;
+    }
+    .getweather {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait), screen and (max-width: 1024px) and (orientation:  landscape) {
+    #ice-logo {
+        width: 50%;
+        height: auto;
+    }
+    a.getweather {
+        width: 50px;
+        height: 50px;
+        border-radius: 50px;
+        font-size: 0;
+    }
+    a.getweather:hover {
+        font-size: 0;
+        background-repeat: repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    .weather-report {
+        align-items: flex-end;
+    }
+    .button.accordion, .button.accordion:hover, .button.accordion:active {
+        animation: none;
+        color: #333;
+    }
+}
+
+@media screen and (max-width: 480px) and (orientation: portrait) {
+    .accordContainer {
+        display: flex;
+        width: 96%;
+    }
+    iframe {
+        width: 330px;
+        height: 500px;
+    }
+    .textbox {
+        height: 30px;
+    }
+    .quote {
+        font-size: 10px;
+        margin: 0;
+    }
+    .quoteby {
+        display: none;
+    }
+    #imgtog {
+        margin-bottom: 0;
+    }
+    .button.accordion, .button.accordion:hover, .button.accordion:hover::after {
+        animation: none;
+        color: #333;
+    }
+    .button.accordion.is-open {
+        animation: none;
+    }
+    .weather-report {
+        align-items: flex-end;
+    }
+}
+@media screen and (max-width: 670px) and (orientation:  landscape)
+{
+    .accordContainer {
+        display: none;
+    }
+    .weather-report {
+        align-items: flex-end;
+    }
 }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script>
 $(document).ready(function () {
-var iceURL = localStorage.getItem('iceURL');
-var iceName = localStorage.getItem('iceName');
-var weatherConditions = localStorage.getItem('weatherConditions');
-if(weatherConditions === null) {
-    $('.weather-html').html(`The Weather Is Not Available<br>Until You Click!`);
+var iceURL = JSON.parse(localStorage.getItem('iceURL'));
+var location = JSON.parse(localStorage.getItem('location'));
+var coordinates = JSON.parse(localStorage.getItem('coordinates'));
+var temperature = JSON.parse(localStorage.getItem('temperature'));
+var conditions = JSON.parse(localStorage.getItem('conditions'));
+if(conditions !== 'Snow') {
+    $('.weather-html').css('display','none');
+} else if (location === ', undefined') {
+    var location = 'The Middle of Nowhere';
+    $('.weather-html').html(`${location.bold().fontcolor('rgb(77, 192, 238)')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('rgb(77, 192, 238)')}`);
 } else {
-    $('.weather-html').html(`The Weather Is Currently:<br><br>${weatherConditions}`);
+    $('.weather-html').html(`${location.bold().fontcolor('rgb(77, 192, 238)')}<br>${coordinates}<br>${temperature}<br>Condtions: ${conditions.toUpperCase().bold().fontcolor('rgb(77, 192, 238)')}`);
 }
-$('.title').html(iceName);
-$('.url').html(`More info here!! ${iceURL}`);
-$( ".getweather, .hero-toggle, .home" ).hover(function() {
-    $('.background').removeClass("transition").addClass("blur");
+$( ".getweather" ).hover(function() {
+    $('#ice-logo, .accordContainer, .background, .hero-toggle, .home').removeClass("transition").addClass("blur");
 });
-$( ".getweather, .hero-toggle, .home" ).mouseout(function() {
-    $('.background').addClass("transition").removeClass("blur");
+$( ".getweather" ).mouseout(function() {
+    $('#ice-logo, .accordContainer, .background, .hero-toggle, .home').addClass("transition").removeClass("blur");
+});
+$( ".hero-toggle, .home" ).hover(function() {
+    $('.weather-report, #ice-logo, .accordContainer, .background').removeClass("transition").addClass("blur");
+});
+$( ".hero-toggle, .home" ).mouseout(function() {
+    $('.weather-report, #ice-logo, .accordContainer, .background').addClass("transition").removeClass("blur");
 });
 function accord(){
-    var accordions = document.getElementsByClassName("accordion");
- for (var i = 0; i < accordions.length; i++) {
-   accordions[i].onclick = function() {
-     this.classList.toggle('is-open');
-  
-     var content = this.nextElementSibling;
-     if (content.style.maxHeight) {
-       // accordion is currently open, so close it
-       content.style.maxHeight = null;
-     } else {
-       // accordion is currently closed, so open it
-       content.style.maxHeight = content.scrollHeight + "px";
-     }
-   }
- }
+    $('#iframe').attr('src',`${iceURL}`);
+    var accordions = document.querySelectorAll(".accordion");
+    var accordcontent = document.querySelectorAll(".accordion-content");
+    for (var i = 0; i < accordions.length; i++) {
+        accordions[i].onclick = function() {
+            var newColor = $(this).css('color');
+            accordions.forEach((accord) => {
+                accord.classList.remove('is-open');
+                accord.style.color = '#333';
+            })
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                this.style.color = '#333';
+            } else {
+                this.style.color = newColor;
+            }
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                accordcontent.forEach((accord) => {
+                    accord.style.maxHeight = null;
+                    this.classList.add('is-open');
+                });
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    }
 }
 accord();
-var weatherURL = 'http://www.apixu.com/doc/Apixu_weather_conditions.json';
+var content = [
+    ["“I need you to chill out!”", "https://boundingintocomics.com/files/2019/03/2019.03.22-01.48-boundingintocomics-5c943f06ebc3e.png" ],
+    ["“An Iceman never kisses and tells.”", "https://i.pinimg.com/originals/68/4d/5a/684d5a1f3a0c14239a73d5f6e4c914df.jpg"],
+    ["“Right now, I kinda need some time to be alone -- and think.”", "https://i.pinimg.com/originals/30/e5/df/30e5df1ebb73a8701c952f89fe21c44f.jpg"],
+    ["“Teamwork. You gotta love it.”", "http://1.bp.blogspot.com/-W8NDWkq0EXI/Ti5yzWhboAI/AAAAAAAABo0/flZ8YFpZz9Q/s1600/Iceman.JPG"],
+    ["“Was a time people laughed at my jokes.”", "https://i.pinimg.com/originals/36/56/a4/3656a4944fb272fbb5cc00d1230977ab.jpg"],
+    ["“I am pulling the most totally bizarre vibes off the others.”", "https://vignette.wikia.nocookie.net/marveldatabase/images/c/c7/Iceman_Vol_3_8_Textless.jpg/revision/latest?cb=20170920001844"],
+    ["“Oh. Hey. Kitty. Four hours in a jet with my favorite ex-girlfriend. Yaaaay.”", "https://vignette.wikia.nocookie.net/marveldatabase/images/2/2d/Robert_Drake_%28Earth-TRN517%29_from_Marvel_Contest_of_Champions_001.jpg/revision/latest?cb=20170401112148"],
+    ["“ Sinister won't be bothering us for a long time”", "https://pm1.narvii.com/5812/c444bcfba3f67ef170e8af4613e6515ddf5037f3_hq.jpg"],
+    ["“ I got rejected from the likes of Eugene”", "https://scontent-cdg2-1.cdninstagram.com/vp/a2cccbee8de1401023086e68252c6fc7/5DB9381B/t51.2885-15/e35/20968900_102885273776231_5923734721321238528_n.jpg?_nc_ht=scontent-cdg2-1.cdninstagram.com&ig_cache_key=MTU4NDI4ODg5NDIyNzQxNzA2MQ%3D%3D.2"],
+];
+// set counter to 1
+var count = 1;
+$("#imgtog").click(function(){
+    // check is end of array reached and start from beginning
+    count == content.length ? count = 0 : "";
+    // fade h4 out
+    $(".quote").fadeOut(800, function() {
+      // use counter to get the correct index of array to change the h4 to the relevent quote
+      $(".quote").html(content[count][0]);
+      // use counter to get the correct index of array to change the h4 to the relevent image source
+      $("#mainProductImage").css('backgroundImage',`url(${content[count][1]})`);
+      // fade h1 back in after everything else is done
+      $(".quote").fadeIn(800);
+      // increment count by 1
+      count++;
+    });
+});
 $('.getweather').on('click', (e) => {
-    localStorage.removeItem('weatherConditions');                                
+    const lat = (Math.floor(Math.random()*180) - 90);
+    const lon = (Math.floor(Math.random()*360) - 180);
+    const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2f4580c1da2a1471787ee4c356181fd1`;
     $.getJSON ( weatherURL )
     .done(function( response ) {
-        console.log(response);
-        var weatherConditions = response[Math.floor(Math.random()*48)].day;
-        localStorage.setItem('weatherConditions', JSON.stringify(weatherConditions));
-        if (weatherConditions === 'Patchy rain possible'||weatherConditions === 'Moderate rain'||weatherConditions === 'Light drizzle'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Fog'||weatherConditions === 'Heavy rain at times'||weatherConditions === 'Partly cloudy'||weatherConditions === 'Light rain shower'||weatherConditions === 'Moderate or heavy rain shower'||weatherConditions === 'Mist'||weatherConditions === 'Cloudy'||weatherConditions === 'Light rain') {
+        var location = `${response.name}, ${response.sys.country}`;
+        var coordinates = `Latitude: ${response.coord.lat}, Longitude: ${response.coord.lon}`;
+        var fartemp = Math.round(((response.main.temp - 273.15) * (9/5)) + 32);
+        var temperature = `${fartemp}°F`;
+        var conditions = `${response.weather[0].main}`;
+        localStorage.setItem('location', JSON.stringify(location));
+        localStorage.setItem('coordinates', JSON.stringify(coordinates));
+        localStorage.setItem('temperature', JSON.stringify(temperature));
+        localStorage.setItem('conditions', JSON.stringify(conditions));
+        if (conditions === 'Rain'||conditions === 'Clouds') {
             window.location.href="storm.html";
-        } else if (weatherConditions === 'Blowing snow'||weatherConditions === 'Moderate or heavy sleet showers'||weatherConditions === 'Blizzard'||weatherConditions === 'Patchy snow possible'||weatherConditions === 'Light showers of ice pellets'||weatherConditions === 'Patchy sleet possible'||weatherConditions === 'Patchy freezing drizzle possible'||weatherConditions === 'Light freezing rain'||weatherConditions === 'Ice pellets'||weatherConditions === 'Moderate or heavy showers of ice pellets'||weatherConditions === 'Light sleet showers'||weatherConditions === 'Heavy snow'||weatherConditions === 'Moderate or heavy sleet'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Freezing fog'||weatherConditions === 'Moderate or heavy snow showers'||weatherConditions === 'Patchy heavy snow'||weatherConditions === 'Heavy freezing drizzle'||weatherConditions === 'Light snow'||weatherConditions === 'Light snow showers'||weatherConditions === 'Moderate snow'||weatherConditions === 'Patchy moderate snow') {
+        } else if (conditions === 'Snow') {
             window.location.href="iceman.html";
-        } else if (weatherConditions === 'Thundery outbreaks possible'||weatherConditions === 'Patchy light rain with thunder'||weatherConditions === 'Patchy light snow with thunder'||weatherConditions === 'Torrential rain shower'||weatherConditions === 'Moderate or heavy rain with thunder') {
+        } else if (conditions === 'Thunderstorm') {
             window.location.href="thor.html";
         } else {
             window.location.href="torch.html";
@@ -259,14 +501,13 @@ $('.getweather').on('click', (e) => {
 });
 });
 </script>
-    <title>Random</title>
+    <title>Iceman</title>
 </head>
 <body>
 <div class="background"></div>
 <div class="container_fluid">
-<div class="weather"></div>
-<div class="title"></div>
-<div class="url"></div>
+<img src="../idework/images/icemanlogo.png" id="ice-logo">
+<img src="images/main.png" id="main-logo">
 <header>
 <div class="weather-report">
 <div class="weather-html"></div>
@@ -279,41 +520,28 @@ $('.getweather').on('click', (e) => {
 <a href="torch.html" class="hero-toggle" id="torch"></a>
 </header>
 <div class="accordContainer">
-       <button class="accordion">Overview</button>
+       <button class="accordion">OVERVIEW</button>
+        <div class="accordion-content" id="heroURL">
+        <iframe id="iframe" width="470" height="565"></iframe>
+        </div>     
+     
+        <button class="accordion">IN ACTION</button>
         <div class="accordion-content">
-          <p>
-                Robert "Bobby" Louis Drake was born in Floral Park, Long Island, New York to William Robert Drake and Madeline Beatrice Bass-Drake. Bobby is Jewish on his mother's side and Irish Catholic on his father's. Bobby first discovered his mutant abilities at a young age when he found himself unable to stop feeling cold and shivering.
-          </p>
-          
-        </div>
-     
-     
-        <button class="accordion">Power and Abilities</button>
-        <div class="accordion-content">
-          <ul>
-              <li>Thermokinesis: the ability to lower both his external and internal body temperature</li>
-              <li>Cryokinesis: The ability to generate, manipulate and fully control ice, snow and cold temperatures</li>
-              <li> Ice Clone Generation: The ability to generate ice clones of himself</li>
-              <li>Water Control </li>
-              <li> Energy Blasts</li>
-          </ul>
-        </div>
-     
-     
-        <button class="accordion">In Action</button>
-        <div class="accordion-content">
-                <img src="https://static.comicvine.com/uploads/original/11122/111220339/4595225-2982345676-24n05.jpg" alt="Ice man in action" width="100%" height="100%">
-
+        <iframe id="action-gif" width="470" height="565" scrolling="no"></iframe>
         </div>
 
-        <button class="accordion">More Information</button>
-        <div class="accordion-content">
-          <div class="url"></div>
+        <button class="accordion"> IMAGES AND QUOTES GALLERY</button>
+        <div class="accordion-content" id="imgtog">
+        <iframe id="mainProductImage" width="470" height="500" scrolling ="no"></iframe>
+        <div class="textbox">
+        <div class="quote">“Click here for a new Image and Quote”</div>
+        <div class="quoteby">- Iceman</div>
+        </div>
         </div>
 
-        <button class="accordion">Meet the Real life Iceman</button>
+        <button class="accordion">MEET THE REAL LIFE ICEMAN</button>
         <div class="accordion-content">
-                <img src="https://live.staticflickr.com/2946/15324714370_e47c269294_b.jpg" alt="Ice man in action" width="100%" height="100%">
+        <iframe id="cosplay" alt="Ice man in action" width="470" height="565" scrolling="no"></iframe>
         </div>
       </div>
 </div>

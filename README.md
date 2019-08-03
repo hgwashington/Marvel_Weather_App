@@ -1,9 +1,6 @@
 # Marvel Weather App
 
-
-<img src="https://github.com/hgwashington/group-project1/blob/master/images/main.png"  width="100%" height="100%">
-
-
+<img src="https://github.com/hgwashington/group-project1/blob/master/images/main.png"  width="500">
 
 ## What is it? 
 Marvel Weather is an app that a allow a user to ..............

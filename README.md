@@ -8,7 +8,11 @@
 Marvel Weather is an app that a allow a user to ..............
 
 ## How Does it Work?
-<img src="https://media.giphy.com/media/kHZyTYGuwzNXMeeLkZ/giphy.gif" width="50" height="50" />
+  * **Step 1:** User click on the weather icon in the middle of screen that will then proceed to generate a random weather condition                  and a Marvel Hero that relates to the current weather. 
+
+<img src="https://media.giphy.com/media/kHZyTYGuwzNXMeeLkZ/giphy.gif" width="100%" height="100%" />
+
+* **Step 2:** While on the Marvel Hero page, the user can explore an overview of the hero, Action shots, An image andd quotes gallery, and also meet the real life hero.  
 
 
 

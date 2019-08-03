@@ -17,7 +17,7 @@ Marvel Weather is an app that a allow a user to ..............
 <img src="https://media.giphy.com/media/chQkjQuDFPQMgrRTN2/giphy.gif" width="100%" height="100%" />
 
 
-****Note : There is a narbar on the right handside with the list of hero for the user to view. Although some hero may not pop up depending on the weather conditions and current season.  
+****Note : There is a navbar on the right handside with the list of hero for the user to view. Although some hero may not pop up depending on the weather conditions and the current season.  
 
 
 ## How did we make it?

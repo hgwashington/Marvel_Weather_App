@@ -1,8 +1,8 @@
 # Marvel Weather App
 
-<p align="center">
-<img src="https://github.com/hgwashington/group-project1/blob/master/images/main.png" width="100%" height="100%">
-</p>
+
+<img src="https://github.com/hgwashington/group-project1/blob/master/images/main.png"  width="100%" height="100%">
+
 
 
 ## What is it? 

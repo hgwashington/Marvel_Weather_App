@@ -14,6 +14,9 @@ Marvel Weather is an app that a allow a user to ..............
 
 * **Step 2:** While on the Marvel Hero page, the user can explore an overview of the hero, Action shots, An image andd quotes gallery, and also meet the real life hero.  
 
+<img src="https://media.giphy.com/media/chQkjQuDFPQMgrRTN2/giphy.gif" width="100%" height="100%" />
+
+
 
 
 

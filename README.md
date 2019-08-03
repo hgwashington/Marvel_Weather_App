@@ -7,6 +7,11 @@
 ## What is it? 
 Marvel Weather is an app that a allow a user to ..............
 
+## How Does it Work?
+![Alt Text](https://giphy.com/gifs/coding-kHZyTYGuwzNXMeeLkZ)
+
+
+
 ## How did we make it?
 
 | Technology Used | 
